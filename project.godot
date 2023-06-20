@@ -14,6 +14,10 @@ config/name="Dragon's Defense"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+global="*res://scripts/columns.gd"
+
 [display]
 
 window/size/width=576

@@ -5,9 +5,7 @@
 [ext_resource path="res://assets/Lanes.png" type="Texture" id=3]
 [ext_resource path="res://assets/DragonLeftClaw.png" type="Texture" id=4]
 [ext_resource path="res://Firemid.tscn" type="PackedScene" id=5]
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 36.5, 10.125 )
+[ext_resource path="res://DragonHead.gd" type="Script" id=6]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 8, 17 )
@@ -15,20 +13,55 @@ extents = Vector2( 8, 17 )
 [sub_resource type="CircleShape2D" id=1]
 radius = 9.0
 
-[node name="Dragon" type="KinematicBody2D"]
+[node name="Dragon" type="Node2D"]
 
-[node name="HitBox" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 55.125 )
-shape = SubResource( 2 )
+[node name="HeadKinematic" type="KinematicBody2D" parent="."]
 
-[node name="Head" type="Sprite" parent="."]
-texture = ExtResource( 1 )
-
-[node name="Area2D" type="Area2D" parent="Head"]
-
-[node name="HeadHitBox" type="CollisionShape2D" parent="Head/Area2D"]
+[node name="HeadHitBox" type="CollisionShape2D" parent="HeadKinematic"]
 position = Vector2( 0, 47 )
 shape = SubResource( 3 )
+
+[node name="Head" type="Sprite" parent="HeadKinematic"]
+texture = ExtResource( 1 )
+script = ExtResource( 6 )
+
+[node name="FireColumn" type="Node2D" parent="HeadKinematic/Head"]
+position = Vector2( 0, 25 )
+
+[node name="Firemid" parent="HeadKinematic/Head/FireColumn" instance=ExtResource( 5 )]
+
+[node name="Firemid" parent="HeadKinematic/Head/FireColumn/Firemid" instance=ExtResource( 5 )]
+position = Vector2( 0, -8 )
+
+[node name="Firemid" parent="HeadKinematic/Head/FireColumn/Firemid/Firemid" instance=ExtResource( 5 )]
+position = Vector2( 0, -8 )
+
+[node name="Firemid" parent="HeadKinematic/Head/FireColumn/Firemid/Firemid/Firemid" instance=ExtResource( 5 )]
+position = Vector2( 0, -8 )
+
+[node name="Firemid" parent="HeadKinematic/Head/FireColumn/Firemid/Firemid/Firemid/Firemid" instance=ExtResource( 5 )]
+position = Vector2( 0, -8 )
+
+[node name="Firemid" parent="HeadKinematic/Head/FireColumn/Firemid/Firemid/Firemid/Firemid/Firemid" instance=ExtResource( 5 )]
+position = Vector2( 0, -8 )
+
+[node name="Firemid" parent="HeadKinematic/Head/FireColumn/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid" instance=ExtResource( 5 )]
+position = Vector2( 0, -8 )
+
+[node name="Firemid" parent="HeadKinematic/Head/FireColumn/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid" instance=ExtResource( 5 )]
+position = Vector2( 0, -8 )
+
+[node name="Firemid" parent="HeadKinematic/Head/FireColumn/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid" instance=ExtResource( 5 )]
+position = Vector2( 0, -8 )
+
+[node name="Firemid" parent="HeadKinematic/Head/FireColumn/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid" instance=ExtResource( 5 )]
+position = Vector2( 0, -8 )
+
+[node name="Firemid" parent="HeadKinematic/Head/FireColumn/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid" instance=ExtResource( 5 )]
+position = Vector2( 0, -8 )
+
+[node name="Firemid" parent="HeadKinematic/Head/FireColumn/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid" instance=ExtResource( 5 )]
+position = Vector2( 0, -8 )
 
 [node name="RightClaw" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -42,43 +75,11 @@ shape = SubResource( 1 )
 [node name="LeftClaw" type="Sprite" parent="."]
 texture = ExtResource( 4 )
 
+[node name="Area2D" type="Area2D" parent="LeftClaw"]
+
+[node name="LeftClawHitBox" type="CollisionShape2D" parent="LeftClaw/Area2D"]
+position = Vector2( -29, 57 )
+shape = SubResource( 1 )
+
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
-
-[node name="FireColumn" type="Node2D" parent="."]
-position = Vector2( 0, 23 )
-
-[node name="Firemid" parent="FireColumn" instance=ExtResource( 5 )]
-
-[node name="Firemid" parent="FireColumn/Firemid" instance=ExtResource( 5 )]
-position = Vector2( 0, -8 )
-
-[node name="Firemid" parent="FireColumn/Firemid/Firemid" instance=ExtResource( 5 )]
-position = Vector2( 0, -8 )
-
-[node name="Firemid" parent="FireColumn/Firemid/Firemid/Firemid" instance=ExtResource( 5 )]
-position = Vector2( 0, -8 )
-
-[node name="Firemid" parent="FireColumn/Firemid/Firemid/Firemid/Firemid" instance=ExtResource( 5 )]
-position = Vector2( 0, -8 )
-
-[node name="Firemid" parent="FireColumn/Firemid/Firemid/Firemid/Firemid/Firemid" instance=ExtResource( 5 )]
-position = Vector2( 0, -8 )
-
-[node name="Firemid" parent="FireColumn/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid" instance=ExtResource( 5 )]
-position = Vector2( 0, -8 )
-
-[node name="Firemid" parent="FireColumn/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid" instance=ExtResource( 5 )]
-position = Vector2( 0, -8 )
-
-[node name="Firemid" parent="FireColumn/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid" instance=ExtResource( 5 )]
-position = Vector2( 0, -8 )
-
-[node name="Firemid" parent="FireColumn/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid" instance=ExtResource( 5 )]
-position = Vector2( 0, -8 )
-
-[node name="Firemid" parent="FireColumn/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid" instance=ExtResource( 5 )]
-position = Vector2( 0, -8 )
-
-[node name="Firemid" parent="FireColumn/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid/Firemid" instance=ExtResource( 5 )]
-position = Vector2( 0, -8 )
