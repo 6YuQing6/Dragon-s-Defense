@@ -10,9 +10,9 @@ var t = Timer.new()
 
 
 func _ready():
-	print(self.position)
+	#print(self.position)
 	self.position = Vector2(columnsXPos[column], -64)
-	print(self.position)
+	#print(self.position)
 
 var no = false
 
@@ -33,6 +33,7 @@ func takeDmg(damage):
 func dodge(destinationColumn, delta):
 	#smoothy moves the obj to the desired coluinmb using while loops and timers def not bad code :)))
 	no = true
+	$Sprite.set_frame(2)
 	if self.position.x <columnsXPos[destinationColumn]:
 		while self.position.x < columnsXPos[destinationColumn]:
 			self.position.x += 50 * delta
@@ -50,7 +51,8 @@ func dodge(destinationColumn, delta):
 			self.add_child(t)
 			t.start()
 			yield(t, "timeout")
-	
+	$AnimationPlayer.play_backwards("KnightWalk")
 	t.queue_free()
 	self.position = Vector2(columnsXPos[destinationColumn], self.position.y)
+	$Sprite.set_frame(0)
 	no = false
