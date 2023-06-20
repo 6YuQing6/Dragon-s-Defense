@@ -1,6 +1,6 @@
 extends Node
 
-var columbsx = {}
+var columnsXPos = [-30,-15,0,15,30]
 
 
 
