@@ -4,7 +4,11 @@
 [ext_resource path="res://assets/DragonSprite.png" type="Texture" id=2]
 [ext_resource path="res://assets/DragonRightClaw.png" type="Texture" id=3]
 [ext_resource path="res://Knight.tscn" type="PackedScene" id=4]
+<<<<<<< HEAD
 [ext_resource path="res://scripts/columns.gd" type="Script" id=5]
+=======
+[ext_resource path="res://Dragon.tscn" type="PackedScene" id=5]
+>>>>>>> bdd6b74c03a569734d0843e73500b6393b4c591a
 
 [node name="Node2D" type="Node2D"]
 
@@ -17,9 +21,15 @@ texture = ExtResource( 2 )
 [node name="DragonRightClaw" type="Sprite" parent="."]
 texture = ExtResource( 3 )
 
+<<<<<<< HEAD
 [node name="KinematicBody2D" parent="." instance=ExtResource( 4 )]
 script = ExtResource( 5 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 0.13, 0.13 )
+=======
+[node name="Knight" parent="." instance=ExtResource( 4 )]
+
+[node name="Dragon" parent="." instance=ExtResource( 5 )]
+>>>>>>> bdd6b74c03a569734d0843e73500b6393b4c591a
