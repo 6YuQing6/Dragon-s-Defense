@@ -27,6 +27,7 @@ window/size/height=1028
 
 viewport=false
 view=false
+import=false
 
 [gui]
 
