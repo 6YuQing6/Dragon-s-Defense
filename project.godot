@@ -11,7 +11,18 @@ config_version=4
 [application]
 
 config/name="Dragon's Defense"
+run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=576
+window/size/height=1028
+
+[global]
+
+viewport=false
+view=false
 
 [gui]
 
