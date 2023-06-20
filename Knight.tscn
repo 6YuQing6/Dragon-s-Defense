@@ -57,7 +57,7 @@ height = 10.0
 [node name="KinematicBody2D" type="KinematicBody2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, 0.564278 )
+position = Vector2( 0, 0.5 )
 texture = ExtResource( 1 )
 hframes = 3
 frame = 1
