@@ -12,7 +12,8 @@ var columnsXPos = [-30,-15,0,15,30]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(get_viewport().size.x)
+	#print(get_viewport().size.x)
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
