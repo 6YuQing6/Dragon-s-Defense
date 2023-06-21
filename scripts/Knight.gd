@@ -1,7 +1,7 @@
 extends "res://scripts/columns.gd"
 
 var column = 1
-var speed = 5
+export var speed = 5
 var dodgeSpeed = 50
 var health = 3
 var pos = self.position.x

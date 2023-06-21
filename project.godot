@@ -20,8 +20,8 @@ global="*res://scripts/columns.gd"
 
 [display]
 
-window/size/width=576
-window/size/height=1028
+window/size/width=288
+window/size/height=514
 
 [global]
 

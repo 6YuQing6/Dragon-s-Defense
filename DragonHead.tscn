@@ -15,7 +15,6 @@ position = Vector2( 0, 22 )
 shape = SubResource( 1 )
 
 [node name="Head" type="Sprite" parent="."]
-position = Vector2( 0, -25 )
 texture = ExtResource( 1 )
 
 [node name="FireColumn" type="Node2D" parent="Head"]
