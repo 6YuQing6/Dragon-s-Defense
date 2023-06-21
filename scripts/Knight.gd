@@ -2,7 +2,7 @@ extends "res://scripts/columns.gd"
 
 var column = 1
 export var speed = 5
-var dodgeSpeed = 50
+var dodgeSpeed = 25
 var health = 3
 var pos = self.position.x
 
@@ -21,6 +21,7 @@ func _process(delta):
 		#print("pressed")
 		dodge(0, delta)
 
+
 func getColumn():
 	#Returns Current column INT 
 	return column
@@ -32,10 +33,11 @@ func takeDmg(damage):
 func dodge(destinationColumn, delta):
 	#smoothy moves the obj to the desired coluinmb using while loops and timers def not bad code :)))
 	no = true
+	$AnimationPlayer.stop()
 	$Sprite.set_frame(2)
 	if self.position.x <columnsXPos[destinationColumn]:
 		while self.position.x < columnsXPos[destinationColumn]:
-			self.position.x += 50 * delta
+			self.position.x += dodgeSpeed * delta
 			t.set_wait_time(0.01)
 			t.set_one_shot(true)
 			self.add_child(t)
@@ -43,14 +45,13 @@ func dodge(destinationColumn, delta):
 			yield(t, "timeout")
 	if self.position.x >columnsXPos[destinationColumn]:
 		while self.position.x > columnsXPos[destinationColumn]:
-			self.position.x -= 50 * delta
+			self.position.x -= dodgeSpeed * delta
 			t.set_wait_time(0.01)
 			t.set_one_shot(true)
 			self.add_child(t)
 			t.start()
 			yield(t, "timeout")
-	$AnimationPlayer.play_backwards("KnightWalk")
-	t.queue_free()
 	self.position = Vector2(columnsXPos[destinationColumn], self.position.y)
 	$Sprite.set_frame(0)
+	$AnimationPlayer.play("KnightAttack")
 	no = false
