@@ -8,7 +8,6 @@ var pos = self.position.x
 
 var t = Timer.new()
 
-
 func _ready():
 	#print(self.position)
 	self.position = Vector2(columnsXPos[column], -64)
@@ -19,7 +18,7 @@ var no = false
 func _process(delta):
 	self.position.y += speed * delta
 	if Input.is_mouse_button_pressed(1) && !no:
-		print("pressed")
+		#print("pressed")
 		dodge(0, delta)
 
 func getColumn():
@@ -42,7 +41,6 @@ func dodge(destinationColumn, delta):
 			self.add_child(t)
 			t.start()
 			yield(t, "timeout")
-		
 	if self.position.x >columnsXPos[destinationColumn]:
 		while self.position.x > columnsXPos[destinationColumn]:
 			self.position.x -= 50 * delta
