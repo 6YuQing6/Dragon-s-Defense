@@ -8,16 +8,6 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Node",
-"class": "Knight",
-"language": "GDScript",
-"path": "res://scripts/Knight.gd"
-} ]
-_global_script_class_icons={
-"Knight": ""
-}
-
 [application]
 
 config/name="Dragon's Defense"

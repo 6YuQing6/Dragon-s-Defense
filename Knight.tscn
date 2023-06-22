@@ -16,7 +16,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 0, 3 ]
+"values": [ 0, 1 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -39,13 +39,13 @@ resource_name = "KnightWalk"
 length = 1.2
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0.3, 0.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, 1 ) ]
@@ -109,8 +109,8 @@ tracks/2/keys = {
 }
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 3.0
-height = 10.0
+radius = 6.0
+height = 4.0
 
 [node name="KinematicBody2D" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -119,29 +119,16 @@ script = ExtResource( 2 )
 position = Vector2( 0, 0.5 )
 texture = ExtResource( 1 )
 hframes = 8
-<<<<<<< HEAD
 frame = 6
-=======
-frame = 1
->>>>>>> a6b1a6166ec64bc04b304fdfad7deda77c5bc533
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite")
-autoplay = "KnightWalk"
+autoplay = "KnightAttack"
 anims/KnightAttack = SubResource( 1 )
 anims/KnightDodge = SubResource( 3 )
 anims/KnightWalk = SubResource( 4 )
-<<<<<<< HEAD
 anims/atk = SubResource( 5 )
 anims/die = SubResource( 6 )
-=======
-anims/atk = SubResource( 6 )
-anims/die = SubResource( 5 )
->>>>>>> a6b1a6166ec64bc04b304fdfad7deda77c5bc533
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
-
-[connection signal="area_shape_entered" from="Area2D" to="." method="_on_Area2D_area_shape_entered"]

@@ -2,7 +2,7 @@ extends Node
 
 var columnsXPos = [-30,-15,0,15,30]
 
-var columsatk = [0,0,0,0,0] #when making an atk add the time to atk to this list plz
+
 
 
 # Declare member variables here. Examples:

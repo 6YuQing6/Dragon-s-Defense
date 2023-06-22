@@ -25,6 +25,7 @@ tracks/0/keys = {
 [node name="Firemid" type="Sprite"]
 texture = ExtResource( 1 )
 hframes = 2
+frame = 1
 
 [node name="Node2D" type="Node2D" parent="."]
 
