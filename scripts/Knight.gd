@@ -1,5 +1,7 @@
 extends "res://scripts/columns.gd"
 
+class_name Knight
+
 var column = 1
 export var speed = 5
 var dodgeSpeed = 25
@@ -53,5 +55,14 @@ func dodge(destinationColumn, delta):
 			yield(t, "timeout")
 	self.position = Vector2(columnsXPos[destinationColumn], self.position.y)
 	$Sprite.set_frame(0)
-	$AnimationPlayer.play("KnightAttack")
+	$AnimationPlayer.play("KnightWalk")
 	no = false
+
+func _on_Area2D_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
+	print('knight entered')
+	knightAttack()
+
+func knightAttack():
+	$AnimationPlayer.play("KnightAttack")
+	speed = 0
+
