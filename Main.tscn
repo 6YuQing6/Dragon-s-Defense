@@ -21,6 +21,7 @@ script = null
 texture = ExtResource( 3 )
 
 [node name="Knight" parent="." instance=ExtResource( 4 )]
+speed = 10
 
 [node name="DragonHitBox" parent="." instance=ExtResource( 6 )]
 
