@@ -54,6 +54,8 @@ func _physics_process(delta):
 			dest_col = cur_col
 	
 
+func current_column():
+	return cur_col
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

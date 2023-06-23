@@ -3,7 +3,7 @@ extends KinematicBody2D
 var columnsXPosfile
 var columnsXPos
 
-var column = 0 #starting column
+var column = 1 #starting column
 export var speed = 5 #speed it walks down
 var dodgeSpeed = 25 #how fast it dodges
 var health = 3 #number of hits it can take
@@ -31,8 +31,8 @@ func _process(delta):
 	self.position.y += speed * delta
 	if Input.is_mouse_button_pressed(1) && !no:
 		#print("pressed")
-		#dodge(1, delta)
-		takeDmg(3)
+		dodge(0, delta)
+		#takeDmg(3)
 	if self.position.y >= 32:
 		print("ATTTTACKKKKKK")
 		atk()
@@ -117,5 +117,5 @@ func dodge(destinationColumn, delta):
 	Sprites.set_flip_h(false)
 
 	#return to normal walk animation
-	Animator.play("KnightAttack")
+	Animator.play("KnightWalk")
 	no = false
