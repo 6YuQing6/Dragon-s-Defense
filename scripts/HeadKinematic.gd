@@ -78,7 +78,10 @@ func fireAtk(seconds):
 func takeDmg(amounttaken):
 	#print(amounttaken)
 	health -= amounttaken
+	print(health)
+	$AnimationPlayer.play("takeDmg")
 	#print(health)
+
 
 func current_column():
 	return cur_col

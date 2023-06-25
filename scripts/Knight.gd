@@ -35,7 +35,7 @@ func _process(delta):
 		#print("pressed")
 		#dodge(1, delta)
 		takeDmg(3)
-	if self.position.y >= 32:
+	if self.position.y >= 32 && !ded:
 		#print("ATTTTACKKKKKK")
 		atk()
 		#maybe call dragon take dmg func????? MKAE IT SUNYNN!
@@ -65,8 +65,11 @@ func takeDmg(damage):
 	speed = 5
 	Animator.play("KnightAttack")
 
+var ded = false
 func die():
+	ded = true
 	Animator.play("die")
+
 
 func atk():
 	speed = 0
