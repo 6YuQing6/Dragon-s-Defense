@@ -10,6 +10,9 @@ var cur_col = 2
 var dest_col = cur_col
 var pressed = false
 var t = Timer.new()
+
+var health = 3
+
 # Called when the node enters the scene tree for the first time.
 func get_input():
 	velocity = 0
@@ -43,17 +46,26 @@ func change_col(destinationColumn, delta):
 
 func _physics_process(delta):
 	get_input()
-	print('velocity: ', velocity)
+	#print('velocity: ', velocity)
 	if (!pressed):
 		dest_col += velocity
 		if (dest_col >= 0 && dest_col < maxcol):
-			print('dest_col ',  dest_col)
+			#print('dest_col ',  dest_col)
 			change_col(dest_col,delta)
 			cur_col = dest_col
 		else:
 			dest_col = cur_col
 	
+func fireAtk():
+	pass
 
+func takeDmg(amounttaken):
+	#print(amounttaken)
+	health -= amounttaken
+	#print(health)
+
+func current_column():
+	return cur_col
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
