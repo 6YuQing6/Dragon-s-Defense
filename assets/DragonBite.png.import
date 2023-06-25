@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/DragonSprite.png-d3de8ac00ca74c2857f47afca3b635b8.stex"
+path="res://.import/DragonBite.png-0020e8cb8fc99b64b7287e3a5b0e54ea.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/DragonSprite.png"
-dest_files=[ "res://.import/DragonSprite.png-d3de8ac00ca74c2857f47afca3b635b8.stex" ]
+source_file="res://assets/DragonBite.png"
+dest_files=[ "res://.import/DragonBite.png-0020e8cb8fc99b64b7287e3a5b0e54ea.stex" ]
 
 [params]
 

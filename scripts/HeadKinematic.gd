@@ -1,4 +1,5 @@
 extends KinematicBody2D
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -10,13 +11,25 @@ var cur_col = 2
 var dest_col = cur_col
 var pressed = false
 var t = Timer.new()
+var FireColumn
+
+
+var health = 3
+
+func _ready():
+	FireColumn = get_node("Sprite/FireColumn")
+
 # Called when the node enters the scene tree for the first time.
 func get_input():
 	velocity = 0
-	if Input.is_action_pressed('ui_right'):
-		velocity = 1
-	if Input.is_action_pressed('ui_left'):
-		velocity = -1
+	if (FireColumn.visible == false):
+		if Input.is_action_pressed('ui_right'):
+			velocity = 1
+		if Input.is_action_pressed('ui_left'):
+			velocity = -1
+	if (!Input.is_action_pressed('ui_left') && !Input.is_action_pressed('ui_right') && Input.is_action_pressed('ui_select')):
+		fireAtk(1.5)
+		
 
 func change_col(destinationColumn, delta):
 	pressed = true
@@ -43,16 +56,29 @@ func change_col(destinationColumn, delta):
 
 func _physics_process(delta):
 	get_input()
-	print('velocity: ', velocity)
+	#print('velocity: ', velocity)
 	if (!pressed):
 		dest_col += velocity
 		if (dest_col >= 0 && dest_col < maxcol):
-			print('dest_col ',  dest_col)
+			#print('dest_col ',  dest_col)
 			change_col(dest_col,delta)
 			cur_col = dest_col
 		else:
 			dest_col = cur_col
 	
+func fireAtk(seconds):
+	FireColumn.visible = true
+	t.set_wait_time(seconds)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	yield(t, "timeout")
+	FireColumn.visible = false
+
+func takeDmg(amounttaken):
+	#print(amounttaken)
+	health -= amounttaken
+	#print(health)
 
 func current_column():
 	return cur_col

@@ -26,5 +26,3 @@ func start_decreasing_health(attack_damage):
 
 func _decrease_health(attack_damage):
 	health -= attack_damage
-
-

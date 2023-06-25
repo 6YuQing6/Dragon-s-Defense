@@ -4,6 +4,7 @@ var columnsXPos = [-30,-15,0,15,30]
 
 var columnsAttack = [0,0,0,0,0]
 
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

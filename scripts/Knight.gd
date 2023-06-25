@@ -3,7 +3,7 @@ extends KinematicBody2D
 var columnsXPosfile
 var columnsXPos
 
-var column = 1 #starting column
+var column = 0 #starting column
 export var speed = 5 #speed it walks down
 var dodgeSpeed = 25 #how fast it dodges
 var health = 3 #number of hits it can take
@@ -12,6 +12,7 @@ var pos = self.position.x #starting pos
 #child nodes
 var Animator
 var Sprites
+var Dragon
 
 #timer for various things
 var t = Timer.new()
@@ -19,6 +20,7 @@ var t = Timer.new()
 func _ready():
 	columnsXPosfile = get_node("/root/global") # how to get golbal vals copy this
 	columnsXPos = columnsXPosfile.columnsXPos
+	Dragon = get_node("/root/Node2D/DragonHead")
 	Animator = get_node("AnimationPlayer")
 	Sprites = get_node("Sprite")
 	#print(self.position)
@@ -31,10 +33,10 @@ func _process(delta):
 	self.position.y += speed * delta
 	if Input.is_mouse_button_pressed(1) && !no:
 		#print("pressed")
-		dodge(0, delta)
-		#takeDmg(3)
+		#dodge(1, delta)
+		takeDmg(3)
 	if self.position.y >= 32:
-		print("ATTTTACKKKKKK")
+		#print("ATTTTACKKKKKK")
 		atk()
 		#maybe call dragon take dmg func????? MKAE IT SUNYNN!
 	
@@ -45,7 +47,7 @@ func getColumn():
 	return column
 
 func takeDmg(damage):
-	print(health)
+	#print(health)
 	speed = 0
 	Sprites.set_frame(5)
 	#substracts health by int damage || and checks if it has died
@@ -70,6 +72,10 @@ func atk():
 	speed = 0
 	Animator.play("atk")
 
+func doDmg():
+	Dragon.takeDmg(1)
+	pass
+		
 func predict():
 	#MAKE THE ATTACKS SO I CAN DO THIS
 	pass
@@ -117,5 +123,5 @@ func dodge(destinationColumn, delta):
 	Sprites.set_flip_h(false)
 
 	#return to normal walk animation
-	Animator.play("KnightWalk")
+	Animator.play("KnightAttack")
 	no = false
