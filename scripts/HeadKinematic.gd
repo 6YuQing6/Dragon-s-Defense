@@ -12,24 +12,27 @@ var dest_col = cur_col
 var pressed = false
 var t = Timer.new()
 var FireColumn
+var Animator
 
 
 var health = 3
 
 func _ready():
 	FireColumn = get_node("Sprite/FireColumn")
+	Animator = get_node("AnimationPlayer")
 
 # Called when the node enters the scene tree for the first time.
 func get_input():
 	velocity = 0
-	if (FireColumn.visible == false):
+	if (FireColumn.visible == false && Animator.current_animation == "Idle"):
 		if Input.is_action_pressed('ui_right'):
 			velocity = 1
 		if Input.is_action_pressed('ui_left'):
 			velocity = -1
 	if (!Input.is_action_pressed('ui_left') && !Input.is_action_pressed('ui_right') && Input.is_action_pressed('ui_select')):
-		fireAtk(1.5)
-		
+		fireAtk(2)
+	if (!Input.is_action_pressed('ui_left') && !Input.is_action_pressed('ui_right') && Input.is_action_pressed('ui_up')):
+		biteAtk()
 
 func change_col(destinationColumn, delta):
 	pressed = true
@@ -75,6 +78,14 @@ func fireAtk(seconds):
 	yield(t, "timeout")
 	FireColumn.visible = false
 
+func biteAtk():
+	Animator.play("Bite")
+	yield(Animator,"animation_finished")
+	idleState()
+
+func idleState():
+	Animator.play("Idle")
+
 func takeDmg(amounttaken):
 	#print(amounttaken)
 	health -= amounttaken
@@ -82,6 +93,4 @@ func takeDmg(amounttaken):
 
 func current_column():
 	return cur_col
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+
