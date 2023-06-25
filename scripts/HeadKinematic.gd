@@ -29,9 +29,9 @@ func get_input():
 			velocity = 1
 		if Input.is_action_pressed('ui_left'):
 			velocity = -1
-	if (!Input.is_action_pressed('ui_left') && !Input.is_action_pressed('ui_right') && Input.is_action_pressed('ui_select')):
+	if (!Input.is_action_pressed('ui_left') && !Input.is_action_pressed('ui_right') && Animator.current_animation == "Idle" && Input.is_action_pressed('ui_select')):
 		fireAtk(2)
-	if (!Input.is_action_pressed('ui_left') && !Input.is_action_pressed('ui_right') && Input.is_action_pressed('ui_up')):
+	if (!Input.is_action_pressed('ui_left') && !Input.is_action_pressed('ui_right') && FireColumn.visible == false && Input.is_action_pressed('ui_up')):
 		biteAtk()
 
 func change_col(destinationColumn, delta):

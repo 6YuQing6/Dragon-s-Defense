@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/DragonBite.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 17 )
+extents = Vector2( 8, 20 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Bite"
@@ -57,7 +57,7 @@ tracks/1/keys = {
 script = ExtResource( 3 )
 
 [node name="HeadHitBox" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 22 )
+position = Vector2( 0, 45 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
