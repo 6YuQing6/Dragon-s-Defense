@@ -6,7 +6,7 @@
 [ext_resource path="res://Knight.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/columns.gd" type="Script" id=5]
 [ext_resource path="res://Dragon.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scripts/spawner.gd" type="Script" id=7]
+[ext_resource path="res://Bar.tscn" type="PackedScene" id=7]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 5 )
@@ -30,3 +30,12 @@ zoom = Vector2( 0.3, 0.3 )
 
 [node name="spawner" type="Node2D" parent="."]
 script = ExtResource( 7 )
+
+[node name="HealthBar" type="Node2D" parent="."]
+position = Vector2( -35, 66 )
+
+[node name="TextureProgress" parent="HealthBar" instance=ExtResource( 7 )]
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 70.0
+margin_bottom = 6.0

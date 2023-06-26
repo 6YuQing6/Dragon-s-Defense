@@ -13,7 +13,6 @@ extents = Vector2( 36, 12 )
 [node name="DragonHitBox" type="Node2D"]
 
 [node name="RightClaw" type="Sprite" parent="."]
-visible = false
 texture = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="RightClaw"]
@@ -23,7 +22,6 @@ position = Vector2( 28, 57 )
 shape = SubResource( 1 )
 
 [node name="LeftClaw" type="Sprite" parent="."]
-visible = false
 texture = ExtResource( 4 )
 
 [node name="Area2D" type="Area2D" parent="LeftClaw"]
@@ -40,5 +38,3 @@ texture = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 0, 53 )
 shape = SubResource( 4 )
-
-[connection signal="area_shape_entered" from="Area2D" to="." method="_on_Area2D_area_shape_entered"]

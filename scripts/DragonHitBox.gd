@@ -15,14 +15,3 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
-
-func _on_Area2D_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
-		start_decreasing_health(area.attack_damage)
-
-func start_decreasing_health(attack_damage):
-	decrease_health_timer = Timer.new()
-	decrease_health_timer.connect("timeout",self,"_decrease_health",[attack_damage])
-	decrease_health_timer.start()
-
-func _decrease_health(attack_damage):
-	health -= attack_damage
