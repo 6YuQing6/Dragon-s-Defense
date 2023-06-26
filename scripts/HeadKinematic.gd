@@ -12,15 +12,21 @@ var cur_col = 2
 var dest_col = cur_col
 var pressed = false
 var t = Timer.new()
-var FireColumn
 var Animator
+var healthbar
 
 
 
 
 func _ready():
-	FireColumn = get_node("Sprite/FireColumn")
 	Animator = get_node("AnimationPlayer")
+	healthbar = get_node("/root/Node2D/HealthBar/TextureProgress")
+	if healthbar == null:
+		print('Null healthbar')
+	healthbar.max_value = health
+	healthbar.value = health
+	print(healthbar.max_value)
+	print(healthbar.value)
 
 # Called when the node enters the scene tree for the first time.
 func get_input():
@@ -91,8 +97,15 @@ func idleState():
 
 func takeDmg(amounttaken):
 	#print(amounttaken)
-	health -= amounttaken
-	#print(health)
+	if (health > 0):
+		health -= amounttaken
+		print('health')
+	else:
+		die()
+	healthbar.value = health
+
+func die():
+	print("dragon ded")
 
 func current_column():
 	return cur_col

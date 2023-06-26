@@ -5,6 +5,7 @@ var columnsXPos
 
 var column = 0 #starting column
 export var speed = 5 #speed it walks down
+export var attack = 10 #how much attack it has
 var dodgeSpeed = 25 #how fast it dodges
 var health = 3 #number of hits it can take
 var pos = self.position.x #starting pos
@@ -73,9 +74,9 @@ func atk():
 	Animator.play("atk")
 
 func doDmg():
-	Dragon.takeDmg(1)
-	pass
-		
+	print('doing dmg: ', attack)
+	Dragon.takeDmg(attack)
+
 func predict():
 	#MAKE THE ATTACKS SO I CAN DO THIS
 	pass
