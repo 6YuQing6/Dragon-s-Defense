@@ -57,6 +57,8 @@ func getColumn():
 	return column
 
 func takeDmg(damage):
+	var bspeed = speed
+	#print("sped", speed)
 	if inDamageProcess:
 		return
 	inDamageProcess = true
@@ -74,9 +76,10 @@ func takeDmg(damage):
 		print("ded")
 		die()
 	else:
-		speed = 5
+		speed = bspeed
 		Animator.play("KnightAttack")
 		inDamageProcess = false
+		#print("sped", speed)
 
 var ded = false
 func die():

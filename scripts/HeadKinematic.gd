@@ -110,7 +110,9 @@ func fireAtkDmg(dmg):
 
 func biteAtk():
 	Animator.play("Bite")
+	global.columnsAttack[current_column()] = 1
 	yield(Animator,"animation_finished")
+	global.columnsAttack[current_column()] = 0
 	idleState()
 
 func idleState():
