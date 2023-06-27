@@ -3,8 +3,11 @@ extends Node
 var columnsXPosfile
 var columnsXPos
 
+
+var idenifyer = 0
 export var startingY = -64
 export var wavespeed = 5;
+var rng = RandomNumberGenerator.new()
 var knight = preload("res://Knight.tscn")
 var t = Timer.new()
 
@@ -15,8 +18,9 @@ var enemies = [0,knight]
 
 # 1 = kinght
 # 2 = ranger
+#[0,1,0,0,1],[1,0,0,0,0],[0,0,0,0,1],[0,0,0,1,1]
 
-var levelOne = [[0,1,0,0,1],[1,0,0,0,0],[0,0,0,0,1],[0,0,0,1,1]]
+var levelOne = [[0,1,0,0,1]]
 
 var wave = 0
 var lane = 0 
@@ -44,7 +48,7 @@ func _ready():
 
 func spawnwave():
 	if wave == levelOne.size():
-		print("LEVEL DONE")
+		#print("LEVEL DONE")
 		return
 	print("wave: " + str(wave))
 	while lane <= levelOne[wave].size() -1 :
@@ -60,9 +64,14 @@ func spawn(type, pos):
 		return
 	var k = enemies[type].instance()
 	add_child(k)
-	k.getColumn()
+	k.column = lane
+	#print("My Column" + str(k.getColumn()))
+	k.idenifyer = idenifyer
+	idenifyer += 1
 	k.position = Vector2(pos)
-	print("spawning")
+	#print("myID: " + str(k.returnID()))
 
+var randomX 
 func findpos(i):
-	return Vector2(columnsXPos[i], startingY)
+	randomX = rng.randf_range(-2,2)
+	return Vector2(columnsXPos[i] + randomX, startingY)
