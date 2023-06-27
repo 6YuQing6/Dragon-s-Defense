@@ -6,7 +6,7 @@ var columnsAttack = [0,0,0,0,0]
 
 var columnsAttackDmg = [0,0,0,0,0]
 
-
+var listofKinghts = []
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

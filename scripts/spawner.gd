@@ -69,6 +69,7 @@ func spawn(type, pos):
 	k.idenifyer = idenifyer
 	idenifyer += 1
 	k.position = Vector2(pos)
+	columnsXPosfile.listofKinghts.append(k)
 	#print("myID: " + str(k.returnID()))
 
 var randomX 

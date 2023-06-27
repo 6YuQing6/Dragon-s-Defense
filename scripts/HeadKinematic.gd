@@ -91,11 +91,20 @@ func fireAtk():
 	#t.start()
 	#FireColumn.visible = false
 
-func fireAtkDmg():
-	global.columnsAttackDmg[current_column()] = fireDmg #how to do atk!!!!
+
+var ikinght = 0
+func fireAtkDmg(dmg):
 	print(global.columnsAttackDmg)
+	if global.listofKinghts.size() == 0:
+		return
+	while ikinght < global.listofKinghts.size():
+		print(current_column())
+		print(global.listofKinghts[ikinght].column)
+		if global.listofKinghts[ikinght].column == current_column():
+			global.listofKinghts[ikinght].takeDmg(dmg)
+		ikinght += 1
+	ikinght = 0
 	yield(Animator,"animation_finished")
-	global.columnsAttackDmg[current_column()] = 0
 	print(global.columnsAttackDmg)
 
 

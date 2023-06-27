@@ -13,6 +13,8 @@ var dodgeSpeed = 25 #how fast it dodges
 var health = 3 #number of hits it can take
 var pos = self.position.x #starting pos
 var dodgeDelay = 10
+var takingDmg = false
+var inDamageProcess = false
 
 #child nodes
 var Animator
@@ -36,17 +38,18 @@ var no = false
 
 func _process(delta):
 	self.position.y += speed * delta
-	if Input.is_mouse_button_pressed(1) && !no:
-		#print("pressed")
-		#dodge(1)
-		takeDmg(3)
 	if self.position.y >= 32 && !ded:
 		#print("ATTTTACKKKKKK")
 		atk()
 		#maybe call dragon take dmg func????? MKAE IT SUNYNN!
 	if !ded:
 		predict()
-	seeDmg()
+	# if !takingDmg:
+	# 	seeDmg()
+	# 	if takingDmg == true:
+	# 		inDamageProcess = true
+	# 		takingDmg = false
+	
 
 
 func getColumn():
@@ -54,30 +57,31 @@ func getColumn():
 	return column
 
 func takeDmg(damage):
-	takingDmg = true
+	if inDamageProcess:
+		return
+	inDamageProcess = true
 	speed = 0
 	Sprites.set_frame(5)
-	#substracts health by int damage || and checks if it has died
+	#subtracts health by int damage || and checks if it has died
 	t.set_wait_time(0.5)
 	t.set_one_shot(true)
 	self.add_child(t)
 	t.start()
 	yield(t, "timeout")
-
 	health -= damage
 	print("health: " + str(health))
 	if health <= 0:
 		print("ded")
 		die()
-		return
 	else:
 		speed = 5
 		Animator.play("KnightAttack")
-	takingDmg = false
+		inDamageProcess = false
 
 var ded = false
 func die():
 	ded = true
+	global.listofKinghts.remove(global.listofKinghts.find(self))
 	Animator.play("die")
 
 
@@ -102,19 +106,16 @@ func predict():
 				dodge(column - 1)
 	pass
 
-var takingDmg = false
 func seeDmg():
-	if takingDmg == true:
+	#print("b: ", takingDmg)
+	if takingDmg:
 		return
-	if columnsXPosfile.columnsAttackDmg[column] > 0 && !takingDmg:
-		takingDmg = true
+	takingDmg = true
+	if columnsXPosfile.columnsAttackDmg[column] > 0:
 		print("owing")
-		takeDmg(columnsXPosfile.columnsAttackDmg[column])
-		t.set_wait_time(0.1)
-		t.set_one_shot(true)
-		self.add_child(t)
-		t.start()
-		yield(t, "timeout")
+		print(takingDmg)
+		takeDmg(1)
+		return
 
 func returnID():
 	return idenifyer
