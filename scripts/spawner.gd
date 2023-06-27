@@ -9,9 +9,10 @@ export var startingY = -64
 export var wavespeed = 5;
 var rng = RandomNumberGenerator.new()
 var knight = preload("res://Knight.tscn")
+var BigKinght = preload("res://BigKnight.tscn")
 var t = Timer.new()
 
-var enemies = [0,knight]
+var enemies = [0,knight,BigKinght]
 
 #ex : [0,0,1,0,0]
 # lane1:nothing lane2:noting lane3:kinght lane4:noting lane5:nothing
@@ -20,7 +21,7 @@ var enemies = [0,knight]
 # 2 = ranger
 #[0,1,0,0,1],[1,0,0,0,0],[0,0,0,0,1],[0,0,0,1,1]
 
-var levelOne = [[0,1,0,0,1]]
+var levelOne = [[0,1,0,0,2]]
 
 var wave = 0
 var lane = 0 
