@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/DragonLeftClaw.png" type="Texture" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 17.0294
+
+[node name="LeftClaw" type="Node2D"]
+
+[node name="LeftClawArea" type="Area2D" parent="."]
+
+[node name="LeftClawHitBox" type="CollisionShape2D" parent="LeftClawArea"]
+shape = SubResource( 1 )
+disabled = true
+
+[node name="LeftClaw" type="Sprite" parent="LeftClawArea"]
+position = Vector2( 30, -56 )
+texture = ExtResource( 1 )
