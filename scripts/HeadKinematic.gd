@@ -15,7 +15,7 @@ var t = Timer.new()
 var Animator
 var healthbar
 
-
+export var fireDmg = 3
 
 
 func _ready():
@@ -77,8 +77,12 @@ func _physics_process(delta):
 			dest_col = cur_col
 	
 func fireAtk():
+	global.columnsAttack[current_column()] = 1 #how to do atk!!!!
+	#print(global.columnsAttack)
 	Animator.play("Fire")
 	yield(Animator,"animation_finished")
+	global.columnsAttack[current_column()] = 0 #how to do atk!!!!
+	#print(global.columnsAttack)
 	idleState()
 	#FireColumn.visible = true
 	#t.set_wait_time(seconds)
@@ -87,9 +91,28 @@ func fireAtk():
 	#t.start()
 	#FireColumn.visible = false
 
+
+var ikinght = 0
+func fireAtkDmg(dmg):
+	print(global.columnsAttackDmg)
+	if global.listofKinghts.size() == 0:
+		return
+	while ikinght < global.listofKinghts.size():
+		print(current_column())
+		print(global.listofKinghts[ikinght].column)
+		if global.listofKinghts[ikinght].column == current_column():
+			global.listofKinghts[ikinght].takeDmg(dmg)
+		ikinght += 1
+	ikinght = 0
+	yield(Animator,"animation_finished")
+	print(global.columnsAttackDmg)
+
+
 func biteAtk():
 	Animator.play("Bite")
+	global.columnsAttack[current_column()] = 1
 	yield(Animator,"animation_finished")
+	global.columnsAttack[current_column()] = 0
 	idleState()
 
 func idleState():
@@ -99,13 +122,15 @@ func takeDmg(amounttaken):
 	#print(amounttaken)
 	if (health > 0):
 		health -= amounttaken
-		print('health')
+		#print('health')
 	else:
 		die()
 	healthbar.value = health
 
 func die():
-	print("dragon ded")
+	pass
+	#print("dragon ded")
+
 
 func current_column():
 	return cur_col
