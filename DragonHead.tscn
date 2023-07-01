@@ -46,6 +46,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [ false ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 1 ],
+"method": "fireAtkDmg"
+} ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "Fire"
@@ -69,7 +83,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 2.6 ),
+"times": PoolRealArray( 0, 3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -81,7 +95,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 2.6 ),
+"times": PoolRealArray( 0, 3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -93,9 +107,12 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"values": [  ]
+"times": PoolRealArray( 1.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 3 ],
+"method": "fireAtkDmg"
+} ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -135,12 +152,12 @@ position = Vector2( 0, 45 )
 shape = SubResource( 1 )
 
 [node name="DragonBiteSprite" type="Sprite" parent="."]
-visible = false
 position = Vector2( 0, 0.991608 )
 texture = ExtResource( 4 )
 hframes = 12
 
 [node name="Head" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 1 )
 hframes = 15
 

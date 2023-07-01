@@ -36,3 +36,4 @@ disabled = true
 position = Vector2( -14, -41 )
 texture = ExtResource( 1 )
 hframes = 15
+frame = 1
