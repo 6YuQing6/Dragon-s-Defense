@@ -4,6 +4,7 @@ extends KinematicBody2D
 # var a = 2
 # var b = "text"
 export var speed = 100
+export var health = 100
 var cols = global.columnsXPos
 var maxcol = global.columnsXPos.size()
 var velocity = 0
@@ -11,27 +12,33 @@ var cur_col = 2
 var dest_col = cur_col
 var pressed = false
 var t = Timer.new()
-var FireColumn
 var Animator
+var healthbar
 
+export var fireDmg = 3
 
-var health = 3
 
 func _ready():
-	FireColumn = get_node("Sprite/FireColumn")
 	Animator = get_node("AnimationPlayer")
+	healthbar = get_node("/root/Node2D/HealthBar/TextureProgress")
+	if healthbar == null:
+		print('Null healthbar')
+	healthbar.max_value = health
+	healthbar.value = health
+	print(healthbar.max_value)
+	print(healthbar.value)
 
 # Called when the node enters the scene tree for the first time.
 func get_input():
 	velocity = 0
-	if (FireColumn.visible == false && Animator.current_animation == "Idle"):
+	if (Animator.current_animation != "Fire" && Animator.current_animation == "Idle"):
 		if Input.is_action_pressed('ui_right'):
 			velocity = 1
 		if Input.is_action_pressed('ui_left'):
 			velocity = -1
 	if (!Input.is_action_pressed('ui_left') && !Input.is_action_pressed('ui_right') && Animator.current_animation == "Idle" && Input.is_action_pressed('ui_select')):
-		fireAtk(2)
-	if (!Input.is_action_pressed('ui_left') && !Input.is_action_pressed('ui_right') && FireColumn.visible == false && Input.is_action_pressed('ui_up')):
+		fireAtk()
+	if (!Input.is_action_pressed('ui_left') && !Input.is_action_pressed('ui_right') && Animator.current_animation == "Idle" && Input.is_action_pressed('ui_up')):
 		biteAtk()
 
 func change_col(destinationColumn, delta):
@@ -69,18 +76,43 @@ func _physics_process(delta):
 		else:
 			dest_col = cur_col
 	
-func fireAtk(seconds):
-	FireColumn.visible = true
-	t.set_wait_time(seconds)
-	t.set_one_shot(true)
-	self.add_child(t)
-	t.start()
-	yield(t, "timeout")
-	FireColumn.visible = false
+func fireAtk():
+	global.columnsAttack[current_column()] = 1 #how to do atk!!!!
+	#print(global.columnsAttack)
+	Animator.play("Fire")
+	yield(Animator,"animation_finished")
+	global.columnsAttack[current_column()] = 0 #how to do atk!!!!
+	#print(global.columnsAttack)
+	idleState()
+	#FireColumn.visible = true
+	#t.set_wait_time(seconds)
+	#t.set_one_shot(true)
+	#self.add_child(t)
+	#t.start()
+	#FireColumn.visible = false
+
+
+var ikinght = 0
+func fireAtkDmg(dmg):
+	print(global.columnsAttackDmg)
+	if global.listofKinghts.size() == 0:
+		return
+	while ikinght < global.listofKinghts.size():
+		print(current_column())
+		print(global.listofKinghts[ikinght].column)
+		if global.listofKinghts[ikinght].column == current_column():
+			global.listofKinghts[ikinght].takeDmg(dmg)
+		ikinght += 1
+	ikinght = 0
+	yield(Animator,"animation_finished")
+	print(global.columnsAttackDmg)
+
 
 func biteAtk():
 	Animator.play("Bite")
+	global.columnsAttack[current_column()] = 1
 	yield(Animator,"animation_finished")
+	global.columnsAttack[current_column()] = 0
 	idleState()
 
 func idleState():
@@ -88,8 +120,17 @@ func idleState():
 
 func takeDmg(amounttaken):
 	#print(amounttaken)
-	health -= amounttaken
-	#print(health)
+	if (health > 0):
+		health -= amounttaken
+		#print('health')
+	else:
+		die()
+	healthbar.value = health
+
+func die():
+	pass
+	#print("dragon ded")
+
 
 func current_column():
 	return cur_col
