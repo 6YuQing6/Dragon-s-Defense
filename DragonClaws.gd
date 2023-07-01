@@ -15,6 +15,8 @@ var mouseposition
 var claws = ['right','left']
 var index = 0
 var clicked = 0
+var RightAnimation
+var LeftAnimation
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
@@ -22,6 +24,8 @@ func _ready():
 	LeftClawArea = get_node("LeftClaw")
 	RCposition = RightClawArea.position
 	LCposition = LeftClawArea.position
+	RightAnimation = get_node("RightClaw/AnimationPlayer")
+	LeftAnimation = get_node("LeftClaw/AnimationPlayer")
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _input(event):
@@ -36,6 +40,7 @@ func moveClaw(claw,mousepos):
 	if (claw == "right"):
 		RightClawArea.position = mousepos
 		print(RightClawArea.global_position)
+		RightAnimation.play("RightClawPound")
 		rightclawTimer.set_wait_time(gobacktime)
 		rightclawTimer.set_one_shot(true)
 		self.add_child(rightclawTimer)
@@ -45,6 +50,7 @@ func moveClaw(claw,mousepos):
 	if (claw == "left"):
 		LeftClawArea.position = mousepos
 		print(LeftClawArea.global_position)
+		LeftAnimation.play("LeftClawPound")
 		leftclawTimer.set_wait_time(gobacktime)
 		leftclawTimer.set_one_shot(true)
 		self.add_child(leftclawTimer)
