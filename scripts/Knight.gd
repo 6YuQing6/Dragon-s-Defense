@@ -186,3 +186,9 @@ func dodge(destinationColumn):
 	print("done")
 
 	dodging = false
+
+
+
+func _on_Area2D_area_entered(area:Area2D):
+	pass # Replace with function body.
+
