@@ -126,7 +126,7 @@ tracks/2/keys = {
 radius = 6.0
 height = 4.0
 
-[node name="KinematicBody2D" type="KinematicBody2D"]
+[node name="KinematicBody2D" type="KinematicBody2D" groups=["enemies"]]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

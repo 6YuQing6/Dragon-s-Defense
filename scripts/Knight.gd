@@ -21,6 +21,9 @@ var Animator
 var Sprites
 var Dragon
 
+#signals
+signal knight_hit
+
 #timer for various things
 var t = Timer.new()
 
@@ -186,3 +189,4 @@ func dodge(destinationColumn):
 	print("done")
 
 	dodging = false
+
