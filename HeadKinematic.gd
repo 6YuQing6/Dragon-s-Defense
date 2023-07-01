@@ -5,6 +5,7 @@ extends KinematicBody2D
 # var b = "text"
 export var speed = 100
 export var health = 100
+export var health = 100
 var cols = global.columnsXPos
 var maxcol = global.columnsXPos.size()
 var velocity = 0
